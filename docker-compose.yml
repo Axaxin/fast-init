@@ -1,7 +1,7 @@
 version: '3'
 services:
 
-  web:
+  npm_app:
     image: 'jc21/nginx-proxy-manager:latest'
     container_name: npm
     restart: unless-stopped
@@ -15,7 +15,7 @@ services:
     networks:
       - npm.io
 
-  por:
+  portainer_app:
     image: 'portainer/portainer-ce'
     container_name: portainer
     privileged: true
