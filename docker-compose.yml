@@ -1,0 +1,31 @@
+version: '3'
+services:
+
+  npm:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: npm
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+      - '81:81'
+    volumes:
+      - ./npm/data:/data
+      - ./npm/letsencrypt:/etc/letsencrypt
+    networks:
+      - npm.io
+
+  portainer:
+    image: 'portainer/portainer-ce'
+    container_name: portainer
+    privileged: true
+    volumes:
+      - ./portainer/data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    networks:
+      - npm.io
+
+networks:
+  npm.io:
+    driver: bridge
