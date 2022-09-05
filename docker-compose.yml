@@ -25,6 +25,22 @@ services:
     restart: unless-stopped
     networks:
       - npm.io
+      
+  ward_app:
+    image: antonyleons/ward
+    restart: unless-stopped
+    container_name: ward
+    #ports:
+      #- '4000:4000'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WARD_PORT=4000
+      - WARD_THEME=light
+      - WARD_NAME=leons-server
+    privileged: true
+    networks:
+      - npm.io
 
 networks:
   npm.io:
