@@ -1,7 +1,7 @@
 version: '3'
 services:
 
-  npm_app:
+  nginx-proxy-manager:
     image: 'jc21/nginx-proxy-manager:latest'
     container_name: npm
     restart: unless-stopped
@@ -13,9 +13,10 @@ services:
       - ./npm/data:/data
       - ./npm/letsencrypt:/etc/letsencrypt
     networks:
-      - npm.io
+      - default
+      - spack
 
-  portainer_app:
+  portainer-ce:
     image: 'portainer/portainer-ce'
     container_name: portainer
     privileged: true
@@ -23,10 +24,8 @@ services:
       - ./portainer/data:/data
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
-    networks:
-      - npm.io
   
-  ward_app:
+  monitor:
     image: antonyleons/ward
     restart: unless-stopped
     container_name: ward
@@ -38,10 +37,24 @@ services:
       - WARD_NAME=server-monitor
     privileged: true
     networks:
-      - npm.io
+      - default
+  
+  browser:
+    container_name: filebrowser
+    restart: unless-stopped
+    volumes:
+      - '/root:/srv'
+      - './filebrowser/filebrowser.db:/database.db'
+      - './filebrowser/.filebrowser.json:/.filebrowser.json'
+    image: filebrowser/filebrowser
       
   
 
 networks:
-  npm.io:
-    driver: bridge
+  default:
+    external: 
+      name: web.io
+  
+  spack:
+    external:
+      name: spack.io
