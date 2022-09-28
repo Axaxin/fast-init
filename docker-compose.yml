@@ -32,8 +32,6 @@ services:
     container_name: ward
     #ports:
       #- '4000:4000'
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - WARD_PORT=4000
       - WARD_THEME=light
