@@ -24,6 +24,8 @@ services:
       - ./portainer/data:/data
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
+    networks:
+      - default
   
   monitor:
     image: antonyleons/ward
@@ -36,8 +38,6 @@ services:
       - WARD_THEME=light
       - WARD_NAME=server-monitor
     privileged: true
-    networks:
-      - default
   
   browser:
     container_name: filebrowser
