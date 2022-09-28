@@ -28,7 +28,7 @@ services:
   
   ward_app:
     image: antonyleons/ward
-    restart: never
+    restart: unless-stopped
     container_name: ward
     #ports:
       #- '4000:4000'
