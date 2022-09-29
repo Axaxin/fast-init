@@ -45,7 +45,7 @@ services:
     volumes:
       - '/root:/srv'
       - './filebrowser/filebrowser.db:/database.db'
-      - './filebrowser/.filebrowser.json:/.filebrowser.json'
+      - './filebrowser/filebrowser.json:/.filebrowser.json'
     image: filebrowser/filebrowser
       
   
