@@ -20,6 +20,8 @@ services:
     image: 'portainer/portainer-ce'
     container_name: portainer
     privileged: true
+    depends_on:
+      - browser
     volumes:
       - ./portainer/data:/data
       - /var/run/docker.sock:/var/run/docker.sock
@@ -45,7 +47,7 @@ services:
     volumes:
       - '/root:/srv'
       - './filebrowser/filebrowser.db:/database.db'
-      - './filebrowser/filebrowser.json:/.filebrowser.json'
+      - './filebrowser/.filebrowser.json:/.filebrowser.json'
     image: filebrowser/filebrowser
       
   
