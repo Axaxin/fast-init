@@ -33,6 +33,8 @@ services:
     image: antonyleons/ward
     restart: unless-stopped
     container_name: ward
+    depends_on:
+      - portainer-ce
     #ports:
       #- '4000:4000'
     environment:
@@ -44,10 +46,13 @@ services:
   browser:
     container_name: filebrowser
     restart: unless-stopped
+    depends_on:
+      - nginx-proxy-manager
     volumes:
       - '/root:/srv'
-      - './filebrowser/filebrowser.db:/database.db'
-      - './filebrowser/.filebrowser.json:/.filebrowser.json'
+      - './filebrowser/data:/data'
+      #- './filebrowser/filebrowser.db:/database.db'
+      #- './filebrowser/.filebrowser.json:/.filebrowser.json'
     image: filebrowser/filebrowser
       
   
