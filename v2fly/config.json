@@ -1,0 +1,38 @@
+{
+  "log" : {
+    "access": "/etc/v2ray/access.log",
+    "error": "/etc/v2ray/error.log",
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "port": 1234,
+      "listen":"172.18.0.2",
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "73f65b4e-5169-4ea5-ab03-3b5ad74dc4da"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+        "path": "/al2a1122/"
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {}
+    },{
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "blocked"
+    }
+  ]
+}
