@@ -27,18 +27,18 @@ services:
         ipv4_address: 172.18.0.10
 
 
-  portainer-ce:
-    image: 'portainer/portainer-ce'
-    container_name: portainer
-    privileged: true
-    depends_on:
-      - browser
-    volumes:
-      - ./portainer/data:/data
-      - /var/run/docker.sock:/var/run/docker.sock
-    restart: unless-stopped
-    networks:
-      - default
+#   portainer-ce:
+#     image: 'portainer/portainer-ce'
+#     container_name: portainer
+#     privileged: true
+#     depends_on:
+#       - browser
+#     volumes:
+#       - ./portainer/data:/data
+#       - /var/run/docker.sock:/var/run/docker.sock
+#     restart: unless-stopped
+#     networks:
+#       - default
   
 #   monitor:
 #     image: antonyleons/ward
